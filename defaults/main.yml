@@ -1,5 +1,5 @@
 ---
-# Centos only...
+# Red Hat OS family only
 lgsm_required_packages:
   - epel-release
   - curl

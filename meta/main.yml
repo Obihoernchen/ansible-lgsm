@@ -1,7 +1,7 @@
 galaxy_info:
   role_name: lgsm
   author: djroot2
-  description: quick ansible module for linuxgsm install. defaults to installing csgo
+  description: Ansible role for Linux Game Server Mangers (LinuxGSM) install.
 
   license: MIT
 
