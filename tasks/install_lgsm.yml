@@ -15,7 +15,7 @@
     group: "{{ lgsm_group }}"
     groups: "{{ lgsm_additional_groups }}"
     comment: "{{ lgsm_comment }}"
-    system: yes
+    system: true
     home: "{{ lgsm_installdir }}"
     state: present
 

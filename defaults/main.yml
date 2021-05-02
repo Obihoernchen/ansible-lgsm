@@ -1,5 +1,5 @@
 ---
-#Centos only...
+# Centos only...
 lgsm_required_packages:
   - epel-release
   - curl
@@ -26,10 +26,10 @@ lgsm_comment: Linux Game Server Manager
 lgsm_installdir: /opt/lgsm
 lgsm_installer_url: https://linuxgsm.sh
 lgsm_installer_name: linuxgsm.sh
-lgsm_install_server: False
+lgsm_install_server: false
 lgsm_server: csgoserver
 lgsm_server_config: "{{ lgsm_installdir }}/lgsm/config-lgsm/{{ lgsm_server }}/{{ lgsm_server }}.cfg"
-lgsm_install_crons: True
+lgsm_install_crons: true
 
 # LGSM configs use a simple key="value" format to build the specific gameserver config
 # For available options see the _default.cfg file of your server: https://github.com/GameServerManagers/LinuxGSM/tree/master/lgsm/config-default/config-lgsm

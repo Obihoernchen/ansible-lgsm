@@ -2,7 +2,7 @@
 - name: Get gameserver control scripts
   become: true
   become_user: '{{ lgsm_user }}'
-  shell: "{{ lgsm_installdir }}/{{ lgsm_installer_name }} {{ lgsm_server }}"
+  command: "{{ lgsm_installdir }}/{{ lgsm_installer_name }} {{ lgsm_server }}"
   args:
     chdir: "{{ lgsm_installdir }}"
     creates: "{{ lgsm_installdir }}/{{ lgsm_server }}"
@@ -10,7 +10,7 @@
 - name: Install gameserver
   become: true
   become_user: '{{ lgsm_user }}'
-  shell: "{{ lgsm_installdir }}/{{ lgsm_server }} auto-install"
+  command: "{{ lgsm_installdir }}/{{ lgsm_server }} auto-install"
   args:
     chdir: "{{ lgsm_installdir }}"
     creates: "{{ lgsm_installdir }}/serverfiles"
@@ -28,10 +28,13 @@
   template:
     src: systemd-unit.j2
     dest: "/etc/systemd/system/{{ lgsm_server }}.service"
+    mode: '0644'
+    owner: root
+    group: root
 
 - name: Enable and start gameserver systemd unit
   systemd:
     state: started
-    enabled: yes
+    enabled: true
     name: "{{ lgsm_server }}"
-    daemon_reload: yes
+    daemon_reload: true
