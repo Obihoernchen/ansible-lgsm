@@ -1,6 +1,6 @@
 ---
 - name: Create cron log directory
-  file:
+  ansible.builtin.file:
     path: "{{ lgsm_installdir }}/log/cron"
     state: directory
     mode: "0755"
@@ -8,7 +8,7 @@
     group: "{{ lgsm_group }}"
 
 - name: Cron to monitor server health
-  cron:
+  ansible.builtin.cron:
     name: lgsm monitoring crontab
     minute: "*/30"
     user: "{{ lgsm_user }}"
@@ -16,7 +16,7 @@
     cron_file: lgsm-crontabs
 
 - name: Cron to update lgsm
-  cron:
+  ansible.builtin.cron:
     name: lgsm update cron
     weekday: "0"
     minute: "0"
@@ -26,7 +26,7 @@
     cron_file: lgsm-crontabs
 
 - name: Cron to update gameserver
-  cron:
+  ansible.builtin.cron:
     name: gameserver update cron
     minute: "0"
     hour: "4"

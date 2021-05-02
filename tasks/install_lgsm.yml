@@ -1,16 +1,16 @@
 ---
 - name: Install prerequisites
-  package:
+  ansible.builtin.package:
     name: "{{ lgsm_required_packages }}"
     state: present
 
 - name: Setup admin group
-  group:
+  ansible.builtin.group:
     name: "{{ lgsm_group }}"
     state: present
 
 - name: Setup admin user
-  user:
+  ansible.builtin.user:
     name: "{{ lgsm_user }}"
     group: "{{ lgsm_group }}"
     groups: "{{ lgsm_additional_groups }}"
@@ -20,7 +20,7 @@
     state: present
 
 - name: Download lgsm installer
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ lgsm_installer_url }}"
     dest: "{{ lgsm_installdir }}/{{ lgsm_installer_name }}"
     owner: "{{ lgsm_user }}"
