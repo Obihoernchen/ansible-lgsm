@@ -1,2 +1,27 @@
----
+galaxy_info:
+  role_name: lgsm
+  author: djroot2
+  description: quick ansible module for linuxgsm install. defaults to installing csgo
+
+  license: MIT
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Fedora
+      versions:
+        - all
+
+  galaxy_tags:
+    - games
+    - linuxgsm
+    - lgsm
+    - cstrike
+    - csgo
+    - server
+
 dependencies: []
