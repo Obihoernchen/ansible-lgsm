@@ -59,7 +59,6 @@ lgsm_server_config_content:
   sourcetvport: "27020"
   defaultmap: "de_mirage"
   maxplayers: "16"
-  # Will force this tickrate in csgo server config
   tickrate: "64"
 
   ## Updating | https://docs.linuxgsm.com/commands/update
