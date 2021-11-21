@@ -20,8 +20,7 @@ lgsm_required_packages:
   - libstdc++.i686
   - nmap-ncat
 lgsm_user: lgsm_admin
-lgsm_group: lgsm_admin
-lgsm_additional_groups: ""
+lgsm_group: "{{ lgsm_user }}"
 lgsm_comment: Linux Game Server Manager
 lgsm_installdir: /opt/lgsm
 lgsm_installer_url: https://linuxgsm.sh
@@ -60,6 +59,7 @@ lgsm_server_config_content:
   sourcetvport: "27020"
   defaultmap: "de_mirage"
   maxplayers: "16"
+  # Will force this tickrate in csgo server config
   tickrate: "64"
 
   ## Updating | https://docs.linuxgsm.com/commands/update

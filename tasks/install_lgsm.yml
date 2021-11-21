@@ -4,16 +4,9 @@
     name: "{{ lgsm_required_packages }}"
     state: present
 
-- name: Setup admin group
-  ansible.builtin.group:
-    name: "{{ lgsm_group }}"
-    state: present
-
 - name: Setup admin user
   ansible.builtin.user:
     name: "{{ lgsm_user }}"
-    group: "{{ lgsm_group }}"
-    groups: "{{ lgsm_additional_groups }}"
     comment: "{{ lgsm_comment }}"
     system: true
     home: "{{ lgsm_installdir }}"
