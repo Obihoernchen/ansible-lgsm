@@ -10,7 +10,46 @@ ExecStart = {{ lgsm_installdir }}/{{ lgsm_server }} start
 ExecStop = {{ lgsm_installdir }}/{{ lgsm_server }} stop
 User = {{ lgsm_user }}
 Restart = on-failure
-RemainAfterExit = yes
+RestartSec = 10s
+TimeoutStopSec = 120
+
+# Privilege boundary
+NoNewPrivileges = yes
+CapabilityBoundingSet =
+AmbientCapabilities =
+RestrictSUIDSGID = yes
+UMask = 0077
+
+# Filesystem
+ProtectSystem = strict
+ProtectHome = yes
+ReadWritePaths = {{ lgsm_installdir }} /tmp /var/tmp
+ProtectProc = invisible
+#ProcSubset = pid # required by info_distro.sh
+
+# Kernel and host state
+ProtectKernelTunables = yes
+ProtectKernelModules = yes
+ProtectKernelLogs = yes
+ProtectControlGroups = yes
+ProtectClock = yes
+ProtectHostname = yes
+RestrictNamespaces = yes
+RestrictRealtime = yes
+LockPersonality = yes
+PrivateDevices = yes
+RemoveIPC = yes
+
+# Network
+RestrictAddressFamilies = AF_INET AF_INET6 AF_UNIX AF_NETLINK
+IPAddressDeny = link-local multicast
+
+# Syscalls
+SystemCallFilter = @system-service
+
+# Blast radius
+TasksMax = 512
+LimitNOFILE = 65535
 
 [Install]
 WantedBy = multi-user.target
