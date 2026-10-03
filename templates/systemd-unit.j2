@@ -2,6 +2,9 @@
 Description = {{ lgsm_server }}
 After = network-online.target
 Wants = network-online.target
+# Restart = always would otherwise retry a broken server forever
+StartLimitIntervalSec = 300
+StartLimitBurst = 5
 
 [Service]
 Type = forking
@@ -9,48 +12,12 @@ WorkingDirectory = {{ lgsm_installdir }}
 ExecStart = {{ lgsm_installdir }}/{{ lgsm_server }} start
 ExecStop = {{ lgsm_installdir }}/{{ lgsm_server }} stop
 User = {{ lgsm_user }}
-Restart = on-failure
+# The main process is tmux, which exits cleanly when the gameserver crashes
+Restart = always
 RestartSec = 10s
 TimeoutStopSec = 120
 
-# Privilege boundary
-NoNewPrivileges = yes
-CapabilityBoundingSet =
-AmbientCapabilities =
-RestrictSUIDSGID = yes
-UMask = 0077
-
-# Filesystem
-ProtectSystem = strict
-ProtectHome = yes
-ReadWritePaths = {{ lgsm_installdir }} /tmp /var/tmp
-ProtectProc = invisible
-#ProcSubset = pid # required by info_distro.sh
-
-# Kernel and host state
-ProtectKernelTunables = yes
-ProtectKernelModules = yes
-ProtectKernelLogs = yes
-ProtectControlGroups = yes
-ProtectClock = yes
-ProtectHostname = yes
-RestrictNamespaces = yes
-RestrictRealtime = yes
-LockPersonality = yes
-PrivateDevices = yes
-RemoveIPC = yes
-
-# Network
-RestrictAddressFamilies = AF_INET AF_INET6 AF_UNIX AF_NETLINK
-IPAddressDeny = link-local multicast
-
-# Syscalls
-SystemCallFilter = @system-service @pkey
-
-# Blast radius
-TasksMax = 512
-LimitNOFILE = 65535
-LimitCORE = 0
+{% include 'systemd-hardening.j2' %}
 
 [Install]
 WantedBy = multi-user.target

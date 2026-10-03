@@ -29,6 +29,9 @@ lgsm_install_server: false
 lgsm_server: csgoserver
 lgsm_server_config: "{{ lgsm_installdir }}/lgsm/config-lgsm/{{ lgsm_server }}/{{ lgsm_server }}.cfg"
 lgsm_install_crons: true
+# Check daily for gameserver updates, restart only if there is one (needs updateonstart: "on")
+lgsm_update_timer: true
+lgsm_update_oncalendar: "*-*-* 04:00:00"
 
 # LGSM configs use a simple key="value" format to build the specific gameserver config
 # For available options see the _default.cfg file of your server: https://github.com/GameServerManagers/LinuxGSM/tree/master/lgsm/config-default/config-lgsm

@@ -1,0 +1,15 @@
+[Unit]
+Description = {{ lgsm_server }} update
+After = network-online.target
+Wants = network-online.target
+
+[Service]
+Type = oneshot
+WorkingDirectory = {{ lgsm_installdir }}
+User = {{ lgsm_user }}
+# Skip the restart if there is no update
+ExecCondition = /usr/local/libexec/{{ lgsm_server }}-update-available
+# Restarting needs root. Start then installs the update (updateonstart).
+ExecStart = +/usr/bin/systemctl restart {{ lgsm_server }}.service
+
+{% include 'systemd-hardening.j2' %}

@@ -1,0 +1,5 @@
+#!/bin/sh
+# {{ ansible_managed }}
+# Exit 0 if LinuxGSM reports a gameserver update, 1 otherwise.
+# check-update itself always exits 0, so look at its output without colors.
+"{{ lgsm_installdir }}/{{ lgsm_server }}" check-update | sed 's/\x1b\[[0-9;]*m//g' | grep -q 'Update available'
