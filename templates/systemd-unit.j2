@@ -45,7 +45,7 @@ RestrictAddressFamilies = AF_INET AF_INET6 AF_UNIX AF_NETLINK
 IPAddressDeny = link-local multicast
 
 # Syscalls
-SystemCallFilter = @system-service
+SystemCallFilter = @system-service @pkey
 
 # Blast radius
 TasksMax = 512
