@@ -1,9 +1,7 @@
 # Ansible Role: LinuxGSM
 
-[![Ansible Galaxy](https://img.shields.io/ansible/role/54616)](https://galaxy.ansible.com/obihoernchen/lgsm)
 [![Version](https://img.shields.io/github/v/release/obihoernchen/ansible-lgsm)](https://github.com/obihoernchen/ansible-lgsm/releases/)
-[![Quality](https://img.shields.io/ansible/quality/54616)](https://galaxy.ansible.com/obihoernchen/lgsm)
-[![Downloads](https://img.shields.io/ansible/role/d/54616)](https://galaxy.ansible.com/obihoernchen/lgsm)
+[![Ansible Role](https://img.shields.io/ansible/role/d/obihoernchen/lgsm)](https://galaxy.ansible.com/ui/standalone/roles/obihoernchen/lgsm)
 
 Ansible role for [Linux Game Server Mangers](https://linuxgsm.com) install.  
 Defaults to installing CS:GO.
